@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Sahil-Workshop-WebDev</title>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Nav Bar -->
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md flex justify-between items-center px-6 py-4 z-50">
+        <div class="text-4xl font-bold text-gray-800">Vescra</div>
+        <div class="flex items-center space-x-4 text-gray-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cursor-pointer hover:text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21c-4.364 0-8-3.04-8-7a5.248 5.248 0 01.665-2.8 5.003 5.003 0 017.145-.705L12 11l.19-.505a5.003 5.003 0 017.145.705c.527.705.665 1.795.665 2.8 0 3.96-3.636 7-8 7z" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cursor-pointer hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14l-1.405 8.229A2 2 0 0115.623 18H8.377a2 2 0 01-1.972-1.771L5 8z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8V6a5 5 0 0110 0v2" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cursor-pointer hover:text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative w-full h-screen bg-cover bg-center" style="background-image: url('static/beautiful-nature-scenery-free-photo.webp');">
+        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-center text-white space-y-4">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-wide">Explore Beyond Boundaries</h1>
+            <p class="text-lg md:text-2xl">Premium, versatile gear for every adventure</p>
+        </div>
+    </div>
+
+
+
+
+
+
+    <section id="iot-display" class="py-10 px-6 bg-gray-50">
+        <h2 class="text-3xl font-bold text-center mb-6">IoT Sensor Data</h2>
+        <div id="iot-cards" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </section>
+    
+    <script>
+        // Fetch IoT Data from ThingSpeak API
+        const apiUrl = "https://api.thingspeak.com/channels/1706406/feeds.json?api_key=NGPF0SHAKQJATC3L&results=1";
+    
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const feeds = data.feeds[0]; // Fetch the first entry
+                const cardsContainer = document.getElementById("iot-cards");
+    
+                // Create card elements dynamically
+                const cardHTML = `
+                    <div class="bg-white shadow-md rounded-lg p-6 border">
+                        <h3 class="text-xl font-bold mb-4 text-indigo-600">IoT Data</h3>
+                        <p><strong>Channel:</strong> ${feeds.field1}</p>
+                        <p><strong>Temperature:</strong> ${feeds.field2}°C</p>
+                        <p><strong>Humidity:</strong> ${feeds.field3}%</p>
+                        <p class="mt-4 text-sm text-gray-500">Updated: ${new Date(feeds.created_at).toLocaleString()}</p>
+                    </div>
+                `;
+                // Add the card to the container
+                cardsContainer.innerHTML = cardHTML;
+            })
+            .catch(error => {
+                console.error("Error fetching data from ThingSpeak API:", error);
+                const cardsContainer = document.getElementById("iot-cards");
+                cardsContainer.innerHTML = `
+                    <div class="text-center text-red-500">
+                        <p>Failed to load IoT data. Please try again later.</p>
+                    </div>
+                `;
+            });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Image with Text -->
+    <section class="grid grid-cols-3 gap-4 m-10">
+        <div class="font-mono pt-10">
+            Go lighter.<br>Go further.<br>
+            Experience the freedom of movement with our featherlight gear
+        </div>
+        <div class="col-span-2 border p-2 rounded-md shadow shadow-indigo-600 shadow-2xl">
+            <img src="static/house-field-with-tree-wind-turbine-background-concept-landscape-photography-rural-scenery-ecofriendly-concepts-nature-environment-sustainable-living_918839-347281.jpg" alt="myimage">
+        </div>
+    </section>
+
+    <!-- Top Picks Section -->
+    <section class="grid grid-cols-2 gap-4 m-10 font-mono py-4">
+        <div class="text-left">Top Picks</div>
+        <div class="text-right">Trusted by Adventurers</div>
+    </section>
+
+    <!-- Image Grid -->
+    <section class="grid grid-cols-2 gap-2 m-10 font-mono py-4">
+        <img class="border" src="static/house-field-with-tree-wind-turbine-background-concept-landscape-photography-rural-scenery-ecofriendly-concepts-nature-environment-sustainable-living_918839-347281.jpg" alt="myimage">
+        <img class="border" src="static/house-field-with-tree-wind-turbine-background-concept-landscape-photography-rural-scenery-ecofriendly-concepts-nature-environment-sustainable-living_918839-347281.jpg" alt="myimage">
+        <img class="border" src="static/house-field-with-tree-wind-turbine-background-concept-landscape-photography-rural-scenery-ecofriendly-concepts-nature-environment-sustainable-living_918839-347281.jpg" alt="myimage">
+        <img class="border" src="static/house-field-with-tree-wind-turbine-background-concept-landscape-photography-rural-scenery-ecofriendly-concepts-nature-environment-sustainable-living_918839-347281.jpg" alt="myimage">
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Brand Section -->
+                <div>
+                    <h2 class="text-lg font-bold">Vescra</h2>
+                    <p class="text-sm mt-2">
+                        Developed in 2024<br>
+                        Promoting eco-friendly nature and sustainable living.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold">Quick Links</h3>
+                    <ul class="mt-2 space-y-2">
+                        <li><a href="#hero" class="hover:text-indigo-400">Home</a></li>
+                        <li><a href="#picks" class="hover:text-indigo-400">Top Picks</a></li>
+                        <li><a href="#contact" class="hover:text-indigo-400">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Address -->
+                <div>
+                    <h3 class="text-lg font-bold">Address</h3>
+                    <p class="text-sm mt-2">
+                        Mumbai, India<br>
+                        info@vescra.com
+                    </p>
+                </div>
+
+                <!-- Social Media Links -->
+                <div>
+                    <h3 class="text-lg font-bold">Follow Us</h3>
+                    <div class="flex space-x-4 mt-2">
+                        <a href="https://instagram.com" target="_blank" class="hover:text-pink-400">Instagram</a>
+                        <a href="https://facebook.com" target="_blank" class="hover:text-blue-500">Facebook</a>
+                        <a href="https://youtube.com" target="_blank" class="hover:text-red-500">YouTube</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-sm">
+                &copy; 2024 Vescra. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
